@@ -66,20 +66,6 @@ class View: CodeView {
         setupTabsCollectionViewStyle()
     }
 
-    private func setupCollectionViews() {
-        tabsCollectionView.register(TabCollectionViewCell.self, forCellWithReuseIdentifier: Constants.tabCellIdentifier)
-        tabsContentCollectionView.register(TabContentColletionViewCell.self, forCellWithReuseIdentifier: Constants.tabContentCellIdentifier)
-        tabsCollectionView.delegate = tabsViewModel
-        tabsCollectionView.dataSource = tabsViewModel
-        tabsContentCollectionView.delegate = tabsContentViewModel
-        tabsContentCollectionView.dataSource = tabsContentViewModel
-    }
-
-    private func setupTabsCollectionViewStyle() {
-        tabsCollectionView.backgroundColor = tabsViewModel.viewColors.sectionsBarBackgroundColor
-        tabIndicatorView.backgroundColor = tabsViewModel.viewColors.indicatorColor
-    }
-
     override func didMoveToWindow() {
         guard hierarchyNotReady else {
             return
@@ -94,6 +80,24 @@ class View: CodeView {
     override func layoutSubviews() {
         super.layoutSubviews()
         activateTabIndictatorViewConstraints()
+    }
+
+    private func setupCollectionViews() {
+        tabsCollectionView.register(TabCollectionViewCell.self, forCellWithReuseIdentifier: Constants.tabCellIdentifier)
+        tabsContentCollectionView.register(TabContentColletionViewCell.self, forCellWithReuseIdentifier: Constants.tabContentCellIdentifier)
+        tabsCollectionView.delegate = tabsViewModel
+        tabsCollectionView.dataSource = tabsViewModel
+        tabsContentCollectionView.delegate = tabsContentViewModel
+        tabsContentCollectionView.dataSource = tabsContentViewModel
+    }
+
+    private func setupTabsCollectionViewStyle() {
+        tabsCollectionView.backgroundColor = tabsViewModel.viewColors.sectionsBarBackgroundColor
+        tabIndicatorView.backgroundColor = tabsViewModel.viewColors.indicatorColor
+    }
+
+    func preSelectCell() {
+        tabsCollectionView.selectItem(at: currentIndexPath, animated: false, scrollPosition: [])
     }
 
 }

@@ -20,7 +20,7 @@ protocol Presentable {
 class SwipeTabViewController: CodeViewController {
 
     private var viewModel: ViewModel
-    private var menuView: View
+    private var tabView: View
 
     private init(array: [ViewControllerPresentable],
                  tabsViewRelationFactor: CGFloat,
@@ -28,14 +28,13 @@ class SwipeTabViewController: CodeViewController {
                  tabsTextColors: TabsTextColors) {
 
         viewModel = ViewModel(viewControllers: array, tabsViewColors: tabsViewColors, tabsTextColors: tabsTextColors)
-        menuView  = View(viewModel: viewModel, tabsViewRelationFactor: tabsViewRelationFactor)
-        menuView.translatesAutoresizingMaskIntoConstraints = false
+        tabView  = View(viewModel: viewModel, tabsViewRelationFactor: tabsViewRelationFactor)
+        tabView.translatesAutoresizingMaskIntoConstraints = false
         super.init()
     }
 
     override func loadView() {
-        view                 = menuView
-        view.backgroundColor = .lightGray
+        view = tabView
     }
 
     override func viewDidLoad() {
@@ -43,6 +42,11 @@ class SwipeTabViewController: CodeViewController {
         viewModel.contentViewModel.viewControllers.forEach { viewController in
             addChild(viewController)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        tabView.preSelectCell()
     }
 
     private func addChildContentViewController(_ childViewController: UIViewController) {
