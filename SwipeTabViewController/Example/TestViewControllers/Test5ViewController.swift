@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  Test5ViewController.swift
 //  SwipeTabViewController
 //
 //  Created by Levchuk Misha on 20/10/2019.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class Test5ViewController: UIViewController, Presentable {
+
+    var presentableTitle: String = "VC5"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
     }
-
-
 }
-
