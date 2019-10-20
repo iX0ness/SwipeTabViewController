@@ -64,7 +64,7 @@ To customize SwipeTabViewController you should use some of Builder's methods.
 * `set(highlightedTextColor: UIColor)` - sets text color to highlight selected view controller.
 * `set(indicatorColor: UIColor)` - sets color to indictator which points on selected view controller.
 
-You can also set titles bar height specifying coefitient, which determines how much space titles bar will take.
+You can also set titles bar height specifying coefitient, which determines how much space titles bar will take. By default titles tab takes 10% of view.
 ```swift
-
+swipeTabViewController = SwipeTabViewController.Builder(viewControllers: array, tabsViewRelationFactor: 0.2).build()
 ```
